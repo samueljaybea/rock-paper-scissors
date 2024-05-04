@@ -5,10 +5,10 @@ function getComputerChoice() {
     if (choice === 1) { //converts the int to a string and returns it's value
         return "rock";
        }
-       if (choice === 2) {
+    if (choice === 2) {
         return "paper";
        }
-       if (choice === 3) {
+    if (choice === 3) {
         return "scissors";
        }
 }
@@ -16,16 +16,17 @@ function getComputerChoice() {
 function getPlayerChoice() {
     choice = prompt("Rock, paper, or scissors?"); //prompts user for choice
     choice = choice.toLowerCase(); //converts to lower case
-    if (choice === "rock" || choice === "paper" || choice === "scissors") { //checks for a valid choice
+    if (choice == "rock" || choice == "paper" || choice == "scissors") { //checks for a valid choice
         return choice; //returns the value
     }
-    else {
-        getPlayerChoice(); //restarts the function if there isn't a valid choice
-    }
+    //else {
+    //    console.log("Pick a valid option.")
+    //    getPlayerChoice(); //restarts the function if there isn't a valid choice
+    //}
 
 }
 
-function capitalize(word) { //capitalizes the first character in a string, used to format the selection after it has been altered with .toLowerCase
+function capitalize(word) { //capitalizes the first character in a string, reformats the selections for the log
   word = word.charAt(0).toUpperCase() + word.slice(1);
   return word;
 }
@@ -33,31 +34,35 @@ function capitalize(word) { //capitalizes the first character in a string, used 
 function playGame() {
     let playerScore = 0; //initializes the variables for player and computer scores
     let computerScore = 0;
-    let playerSelection = getPlayerChoice(); //initializes a variable for player and computer selection
-    let computerSelection = getComputerChoice();
+    let playerSelection //initializes a variable for player and computer selection
+    let computerSelection
 
     function playRound(playerChoice, computerChoice) {
         if (playerChoice == computerChoice) //returns "tie" if computer and player choice are the same
            return "Tie!";
-    
-        if (playerChoice == "rock" && computerChoice == "scissors" || playerChoice == "paper" && computerChoice == "rock" || playerChoice == "scissors" && computerChoice == "paper") { //outcomes if player wins
+
+        //outcomes if player wins
+        if (playerChoice == "rock" && computerChoice == "scissors" || playerChoice == "paper" && computerChoice == "rock" || playerChoice == "scissors" && computerChoice == "paper") { 
             playerScore = ++playerScore;
             return `You win! ${capitalize(playerChoice)} beats ${capitalize(computerChoice)}.`;
         }
-    
-        if (computerChoice == "rock" && playerChoice == "scissors" || computerChoice == "paper" && playerChoice == "rock" || computerChoice == "scissors" && playerChoice == "paper") {//outcome if computer wins
+        
+        //outcomes if computer wins
+        if (computerChoice == "rock" && playerChoice == "scissors" || computerChoice == "paper" && playerChoice == "rock" || computerChoice == "scissors" && playerChoice == "paper") {
             computerScore = ++computerScore;
             return `You lose :( ${capitalize(computerChoice)} beats ${capitalize(playerChoice)}.`
         }
     }
 
+
     for (let i = 1; i < 6; ++i) {
-        console.log(`Round ${i}`)
-        console.log(playRound(playerSelection, computerSelection));
-        console.log(`Player Score: ${playerScore} Computer Score: ${computerScore}`)
-        playerSelection = getPlayerChoice(); //initializes a constant variable for player and computer selection
+        playerSelection = getPlayerChoice(); //initializes a variable for player and computer selection
         computerSelection = getComputerChoice();
+        console.log(`Round ${i}`) //writes the round number into the log
+        console.log(playRound(playerSelection, computerSelection)); //writes the outcome to the log
+        console.log(`Player Score: ${playerScore} Computer Score: ${computerScore}`) // writes the scores to the log
     }
+
 }
 
-playGame();
+playGame(); // calls the game function
