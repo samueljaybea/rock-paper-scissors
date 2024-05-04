@@ -30,19 +30,18 @@ function capitalize(word) { //capitalizes the first character in a string, used 
   return word;
 }
 
-const playerSelection = getPlayerChoice(); //initializes a constant variable for player and computer selection
-const computerSelection = getComputerChoice();
-
-function playGame(playerChoice, computerChoice) {
-    let humanScore = 0; //initializes the variables for player and computer scores
+function playGame() {
+    let playerScore = 0; //initializes the variables for player and computer scores
     let computerScore = 0;
+    let playerSelection = getPlayerChoice(); //initializes a variable for player and computer selection
+    let computerSelection = getComputerChoice();
 
     function playRound(playerChoice, computerChoice) {
         if (playerChoice == computerChoice) //returns "tie" if computer and player choice are the same
            return "Tie!";
     
         if (playerChoice == "rock" && computerChoice == "scissors" || playerChoice == "paper" && computerChoice == "rock" || playerChoice == "scissors" && computerChoice == "paper") { //outcomes if player wins
-            humanScore = ++humanScore;
+            playerScore = ++playerScore;
             return `You win! ${capitalize(playerChoice)} beats ${capitalize(computerChoice)}.`;
         }
     
@@ -51,12 +50,14 @@ function playGame(playerChoice, computerChoice) {
             return `You lose :( ${capitalize(computerChoice)} beats ${capitalize(playerChoice)}.`
         }
     }
-    
-    for (let i = 0; i < 5; ++i) {
-    console.log(playRound(playerChoice, computerChoice));
+
+    for (let i = 1; i < 6; ++i) {
+        console.log(`Round ${i}`)
+        console.log(playRound(playerSelection, computerSelection));
+        console.log(`Player Score: ${playerScore} Computer Score: ${computerScore}`)
+        playerSelection = getPlayerChoice(); //initializes a constant variable for player and computer selection
+        computerSelection = getComputerChoice();
     }
 }
 
-console.log(playerSelection)
-console.log(computerSelection)
 playGame();
