@@ -4,13 +4,13 @@ function getComputerChoice() {
 
     if (choice === 1) { //converts the int to a string and returns it's value
         return "rock";
-       }
+    }
     if (choice === 2) {
         return "paper";
-       }
+    }
     if (choice === 3) {
         return "scissors";
-       }
+    }
 }
 
 function getPlayerChoice() {
@@ -19,11 +19,9 @@ function getPlayerChoice() {
     if (choice == "rock" || choice == "paper" || choice == "scissors") { //checks for a valid choice
         return choice; //returns the value
     }
-    //else {
-    //    console.log("Pick a valid option.")
-    //    getPlayerChoice(); //restarts the function if there isn't a valid choice
-    //}
-
+    else {
+        return undefined; //
+    }
 }
 
 function capitalize(word) { //capitalizes the first character in a string, reformats the selections for the log
@@ -34,7 +32,7 @@ function capitalize(word) { //capitalizes the first character in a string, refor
 function playGame() {
     let playerScore = 0; //initializes the variables for player and computer scores
     let computerScore = 0;
-    let playerSelection //initializes a variable for player and computer selection
+    let playerSelection = 0; //initializes a variable for player and computer selection
     let computerSelection
 
     function playRound(playerChoice, computerChoice) {
@@ -54,15 +52,18 @@ function playGame() {
         }
     }
 
-
-    for (let i = 1; i < 6; ++i) {
+    for (let i = 1; i < 6;) {
         playerSelection = getPlayerChoice(); //initializes a variable for player and computer selection
         computerSelection = getComputerChoice();
+        if (playerSelection == undefined) {
+            console.log("Pick a valid option")
+            continue;
+        }
         console.log(`Round ${i}`) //writes the round number into the log
         console.log(playRound(playerSelection, computerSelection)); //writes the outcome to the log
         console.log(`Player Score: ${playerScore} Computer Score: ${computerScore}`) // writes the scores to the log
+        ++i;
     }
-
 }
 
 playGame(); // calls the game function
