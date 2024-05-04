@@ -53,10 +53,10 @@ function playGame(playerChoice, computerChoice) {
     }
     
     for (let i = 0; i < 5; ++i) {
-        playRound(playerSelection, computerSelection)
+    console.log(playRound(playerChoice, computerChoice));
     }
 }
 
 console.log(playerSelection)
 console.log(computerSelection)
-
+playGame();
