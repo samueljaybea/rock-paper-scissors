@@ -20,11 +20,11 @@ function getPlayerChoice() {
         return choice; //returns the value
     }
     else {
-        return undefined; //
+        return undefined; // hardcode return of undefined on an invalid input
     }
 }
 
-function capitalize(word) { //capitalizes the first character in a string, reformats the selections for the log
+function capitalize(word) { //capitalizes the first character in a string, reformats the inputs for the log
   word = word.charAt(0).toUpperCase() + word.slice(1);
   return word;
 }
@@ -32,11 +32,11 @@ function capitalize(word) { //capitalizes the first character in a string, refor
 function playGame() {
     let playerScore = 0; //initializes the variables for player and computer scores
     let computerScore = 0;
-    let playerSelection = 0; //initializes a variable for player and computer selection
+    let playerSelection; //initializes a variable for player and computer selection
     let computerSelection
 
     function playRound(playerChoice, computerChoice) {
-        if (playerChoice == computerChoice) //returns "tie" if computer and player choice are the same
+        if (playerChoice === computerChoice) //returns "tie" if computer and player choice are the same
            return "Tie!";
 
         //outcomes if player wins
@@ -53,16 +53,20 @@ function playGame() {
     }
 
     for (let i = 1; i < 6;) {
-        playerSelection = getPlayerChoice(); //initializes a variable for player and computer selection
+        
+        playerSelection = getPlayerChoice(); //calls function and assigns to variable
         computerSelection = getComputerChoice();
-        if (playerSelection == undefined) {
+
+        if (playerSelection == undefined) { //catches invalid inputs
             console.log("Pick a valid option")
             continue;
         }
+
         console.log(`Round ${i}`) //writes the round number into the log
         console.log(playRound(playerSelection, computerSelection)); //writes the outcome to the log
         console.log(`Player Score: ${playerScore} Computer Score: ${computerScore}`) // writes the scores to the log
-        ++i;
+        
+        ++i; //updates round number
     }
 }
 
