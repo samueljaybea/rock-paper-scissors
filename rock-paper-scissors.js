@@ -20,7 +20,7 @@ function getPlayerChoice() {
         return choice; //returns the value
     }
     else {
-        return undefined; // hardcode return of undefined on an invalid input
+        return undefined; // hardcodes return of undefined on an invalid input
     }
 }
 
@@ -30,13 +30,17 @@ function capitalize(word) { //capitalizes the first character in a string, refor
 }
 
 function playGame() {
-    let playerScore = 0; //initializes the variables for player and computer scores
+    let playerScore = 0; //initializes variable for player and computer scores
     let computerScore = 0;
-    let playerSelection; //initializes a variable for player and computer selection
+
+    let playerSelection; //initializes variable for player and computer selection
     let computerSelection
 
+    let roundNumber = 1; //initializes round number and total number of rounds
+    const totalRounds = 5;
+
     function playRound(playerChoice, computerChoice) {
-        if (playerChoice === computerChoice) //returns "tie" if computer and player choice are the same
+        if (playerChoice === computerChoice) //returns "tie" if computer and player choice are equal
            return "Tie!";
 
         //outcomes if player wins
@@ -52,9 +56,9 @@ function playGame() {
         }
     }
 
-    for (let i = 1; i < 6;) {
+    for (roundNumber; roundNumber <= totalRounds;) { //replays the game for the specified amount of rounds
         
-        playerSelection = getPlayerChoice(); //calls function and assigns to variable
+        playerSelection = getPlayerChoice(); //calls player choice function and assigns to variable
         computerSelection = getComputerChoice();
 
         if (playerSelection == undefined) { //catches invalid inputs
@@ -62,12 +66,25 @@ function playGame() {
             continue;
         }
 
-        console.log(`Round ${i}`) //writes the round number into the log
+        console.log(`Round: ${roundNumber}`) //writes the round number into the log
         console.log(playRound(playerSelection, computerSelection)); //writes the outcome to the log
         console.log(`Player Score: ${playerScore} Computer Score: ${computerScore}`) // writes the scores to the log
-        
-        ++i; //updates round number
+
+        ++roundNumber; //updates round number after a round
     }
+
+    if (roundNumber > totalRounds) {  // writes outcome to the console
+        if (playerScore > computerScore) {
+            console.log ("The Player wins the game!")
+        }
+        if (playerScore < computerScore) {
+            console.log ("The Computer wins the game! :(")
+        }
+        if (playerScore === computerScore) {
+            console.log ("The game is a tie!")
+        }
+    }    
 }
 
-playGame(); // calls the game function
+playGame();
+
