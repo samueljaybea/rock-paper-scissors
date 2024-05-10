@@ -1,19 +1,26 @@
 let btns = document.querySelectorAll('button');
 let results = document.querySelector('#results');
 
-btns.forEach((button) => {
-	button.addEventListener('click', function () {
+let playerCounter = document.querySelector('#player-counter');
+let computerCounter = document.querySelector('#computer-counter');
+
+let playerScore = 0;
+let computerScore = 0;
+let roundNumber = 1;
+
+let roundCounter = document.querySelector('#round-counter');
+
+//identifies which button is clicked by it's ID and calls the playround function with the choice
+btns.forEach((btn) => {
+	btn.addEventListener('click', function () {
 		let choice = this.id;
-		console.log(playRound(choice, getComputerChoice()));
 		results.textContent = playRound(choice, getComputerChoice());
 	});
 });
 
 function getComputerChoice() {
-	//randomly generates an int from 1-3
 	choice = Math.floor(Math.random() * 3) + 1;
 
-	//converts the int to a string and returns it's value
 	if (choice === 1) {
 		return 'Rock';
 	}
@@ -25,22 +32,10 @@ function getComputerChoice() {
 	}
 }
 
-//gets player choice from id of clicked button
-// function getPlayerChoice(clicked_id) {
-// 	let choice = clicked_id;
-// 	console.log(choice);
-// 	return choice;
-// }
-
-//capitalizes the first character in a string, reformats the inputs for the log
-// function capitalize(word) {
-// 	word = word.charAt(0).toUpperCase() + word.slice(1);
-// 	return word;
-// }
-
-//determines the outcomes for a round
 function playRound(playerChoice, computerChoice) {
-	//returns "tie" if computer and player choice are equal
+	roundNumber = ++roundNumber;
+	roundCounter.textContent = roundNumber;
+
 	if (playerChoice === computerChoice) return 'Tie!';
 
 	//outcomes if player wins
@@ -49,17 +44,26 @@ function playRound(playerChoice, computerChoice) {
 		(playerChoice == 'Paper' && computerChoice == 'Rock') ||
 		(playerChoice == 'Scissors' && computerChoice == 'Paper')
 	) {
-		//playerScore = ++playerScore;
-
+		playerScore = ++playerScore;
+		playerCounter.textContent = playerScore;
 		return `You win! ${playerChoice} beats ${computerChoice}.`;
 	}
 
 	//outcomes if computer wins
 	else {
-		//computerScore = ++computerScore;
+		computerScore = ++computerScore;
+		computerCounter.textContent = computerScore;
 		return `You lose :( ${computerChoice} beats ${playerChoice}.`;
 	}
 }
+
+//capitalizes the first character in a string, reformats the inputs for the log
+// function capitalize(word) {
+// 	word = word.charAt(0).toUpperCase() + word.slice(1);
+// 	return word;
+// }
+
+//determines the outcomes for a round
 
 // function playGame() {
 // 	let playerScore = 0; //initializes variable for player and computer scores
