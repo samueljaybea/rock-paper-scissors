@@ -1,20 +1,25 @@
-let btns = document.querySelectorAll('button');
-let results = document.querySelector('#results');
+const btns = document.querySelectorAll('button');
+const results = document.querySelector('#results');
 
-let playerCounter = document.querySelector('#player-counter');
-let computerCounter = document.querySelector('#computer-counter');
+const playerCounter = document.querySelector('#player-counter');
+const computerCounter = document.querySelector('#computer-counter');
 
 let playerScore = 0;
 let computerScore = 0;
 let roundNumber = 1;
+const scoreTotal = 5; //set target score for a winner
 
 let roundCounter = document.querySelector('#round-counter');
 
-//identifies which button is clicked by it's ID and calls the playround function with the choice
+const playAgain = document.querySelector('#play-again');
+
+//identifies which button is clicked by it's ID and calls the playround function with the ID
 btns.forEach((btn) => {
 	btn.addEventListener('click', function () {
-		let choice = this.id;
-		results.textContent = playRound(choice, getComputerChoice());
+		if (playerScore < scoreTotal && computerScore < scoreTotal) {
+			let choice = this.id;
+			results.textContent = playRound(choice, getComputerChoice());
+		}
 	});
 });
 
@@ -46,17 +51,42 @@ function playRound(playerChoice, computerChoice) {
 	) {
 		playerScore = ++playerScore;
 		playerCounter.textContent = playerScore;
-		return `You win! ${playerChoice} beats ${computerChoice}.`;
+		return playerScore === scoreTotal ? gameWin() : `You win! ${playerChoice} beats ${computerChoice}.`;
 	}
 
 	//outcomes if computer wins
 	else {
 		computerScore = ++computerScore;
 		computerCounter.textContent = computerScore;
-		return `You lose :( ${computerChoice} beats ${playerChoice}.`;
+		return computerScore === scoreTotal ? gameWin() : `You lose :( ${computerChoice} beats ${playerChoice}.`;
 	}
 }
 
+const playButton = document.createElement('button');
+
+const gameOutcome = document.createElement('span');
+
+function gameWin() {
+	if (playerScore > computerScore) {
+		return 'The Player wins the game!';
+	}
+	if (playerScore < computerScore) {
+		return 'The Computer wins the game! :(';
+	}
+}
+
+function roundWin() {}
+
+// function getWinner() {
+// 	if (playerScore > computerScore) {
+// 		console.log('x');
+// 		return 'The Player wins the game!';
+// 	}
+// 	if (playerScore < computerScore) {
+// 		console.log(y);
+// 		return 'The Computer wins the game! :(';
+// 	}
+// }
 //capitalizes the first character in a string, reformats the inputs for the log
 // function capitalize(word) {
 // 	word = word.charAt(0).toUpperCase() + word.slice(1);
