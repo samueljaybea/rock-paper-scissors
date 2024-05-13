@@ -15,7 +15,7 @@ let roundCounter = document.querySelector('#round-counter');
 btns.forEach((btn) => {
 	btn.addEventListener('click', function () {
 		if (playerScore < scoreTotal && computerScore < scoreTotal) {
-			let choice = this.id.toString();
+			let choice = this.id;
 			playRound(choice, getComputerChoice());
 		}
 	});

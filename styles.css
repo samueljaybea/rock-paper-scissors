@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+/* Reset default browser styles */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* Fonts */
+body {
+	font-family: 'Azeret Mono', monospace;
+}
+
+.title {
+	font-family: 'Archivo', sans-serif;
+	font-size: 120px;
+}
+
+/* Body styles */
+body {
+	background-color: #f0f0f0; /* Light gray background */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100vh;
+	width: 100vw;
+}
+
+/* Content max width */
+#title-container,
+#content-container {
+	max-width: 80vw;
+	width: 1000px;
+}
+
+/* Button styles */
+button {
+	background-color: #fff; /* White background */
+	border: 1px solid #000; /* Black border */
+	font-size: 24px;
+	padding: 10px 20px;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s;
+	text-align: center;
+	font-family: 'Archivo', sans-serif;
+	font-weight: 600;
+}
+
+button:hover {
+	background-color: #000; /* Black background on hover */
+	color: #fff; /* White text on hover */
+}
+
+/* Game container styles */
+#game-container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	border-top: 2px solid #000; /* Thick black border on top */
+	padding-top: 20px; /* Padding above the game content */
+}
+
+/* Rounds styles */
+#rounds {
+	font-size: 28px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+/* Results styles */
+#results {
+	font-size: 24px;
+}
+
+/* Play again styles */
+#play-again {
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	flex-basis: auto;
+}
+
+#title-container {
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+#hPaper {
+	margin-left: auto;
+}
+
+#hScissors {
+	width: 100%;
+	text-align: end;
+	margin-top: -44px;
+}
